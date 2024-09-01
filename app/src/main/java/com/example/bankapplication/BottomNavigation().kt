@@ -1,5 +1,6 @@
 package com.example.bankapplication
 
+import android.graphics.Bitmap
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -42,11 +43,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.qrcode.QRCodeWriter
 
 @Preview
 @Composable
@@ -132,23 +135,29 @@ fun FullWidthDialog(
             Box(
                 modifier = Modifier
                     .padding(24.dp)
-                    .fillMaxSize()
+                    .fillMaxSize(),
+                contentAlignment = Alignment.Center
             ) {
-                Column(
+                Box(
                     modifier = Modifier
-                        .fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
+                        .size(500.dp),
+                    contentAlignment = Alignment.Center
+
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.qrbg),
                         contentDescription = "QR frame",
-                        modifier = Modifier.size(500.dp)
+                        modifier = Modifier.fillMaxSize()
                     )
+                   Column(modifier = Modifier.padding(top = 100.dp)) {
+                       GenerateQrCode()
+                   }
+
                 }
                 Box(
                     modifier = Modifier
-                        .padding(24.dp).background(color = Color.LightGray, shape = RoundedCornerShape(16.dp))
+                        .padding(24.dp)
+                        .background(color = Color.LightGray, shape = RoundedCornerShape(16.dp))
                         .align(Alignment.TopEnd)
 
                 ){
@@ -161,7 +170,8 @@ fun FullWidthDialog(
                             .align(Alignment.TopEnd)
                             .clickable(
                                 indication = null,
-                                interactionSource = remember { MutableInteractionSource() }) { onDismiss()
+                                interactionSource = remember { MutableInteractionSource() }) {
+                                onDismiss()
                             }
                     )
                 }
@@ -173,6 +183,32 @@ fun FullWidthDialog(
 
 
     }
+}
+
+
+@Composable
+fun GenerateQrCode(text: String = "hello987733"){
+    val matrix = QRCodeWriter().encode(text, BarcodeFormat.QR_CODE, 512, 512)
+    val width = matrix.width
+    val height = matrix.height
+    val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+
+    for (y in 0 until height) {
+        for (x in 0 until width) {
+            bitmap.setPixel(
+                x, y,
+                if (matrix.get(x, y)) android.graphics.Color.BLACK else android.graphics.Color.WHITE
+            )
+        }
+    }
+
+    Image(
+        bitmap = bitmap.asImageBitmap(),
+        contentDescription = "Generated QR Code",
+        modifier = Modifier.size(200.dp)
+    )
+
+
 }
 
 

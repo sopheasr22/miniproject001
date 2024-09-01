@@ -68,7 +68,10 @@ dependencies {
     // System UI Controller
     implementation(libs.accompanist.systemuicontroller)
     implementation(libs.androidx.material.icons.extended)
+    // for scroll pager
     implementation ("com.google.accompanist:accompanist-pager:0.12.0")
+    // for generate qr code
+    implementation("com.google.zxing:core:3.3.0")
 }
 
 
