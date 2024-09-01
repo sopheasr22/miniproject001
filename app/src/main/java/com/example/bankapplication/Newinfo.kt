@@ -27,7 +27,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun MyApp(modifier: Modifier = Modifier) {
-
+    // List of images
     val images = listOf(
         R.drawable.abacon,
         R.drawable.aba_chat_slider_en_v,
@@ -35,9 +35,10 @@ fun MyApp(modifier: Modifier = Modifier) {
         R.drawable.abasd,
         R.drawable.abasd
     )
-    val pagerState = rememberPagerState(
-        pageCount = images.size
-    )
+
+    // State for the pager
+    val pagerState = rememberPagerState(pageCount = images.size)
+    // Auto-scroll pager
     LaunchedEffect(Unit) {
         while (true) {
             delay(2000)
@@ -51,22 +52,24 @@ fun MyApp(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "News and Information", color = Color.White,
+            text = "News and Information",
+            color = Color.White,
             fontWeight = FontWeight.Normal,
-            fontSize = 18.sp, modifier = Modifier
+            fontSize = 18.sp,
+            modifier = Modifier
                 .align(Alignment.Start)
                 .padding(start = 16.dp)
         )
+
+        // Pager container
         Box(modifier = modifier.wrapContentSize()) {
             HorizontalPager(
                 state = pagerState,
-                modifier
-                    .wrapContentSize()
-
+                modifier = modifier.wrapContentSize()
             ) { currentPage ->
-
+                // Card for each page
                 Card(
-                    modifier
+                    modifier = modifier
                         .wrapContentSize()
                         .padding(16.dp),
                     elevation = CardDefaults.cardElevation(8.dp)
@@ -79,14 +82,13 @@ fun MyApp(modifier: Modifier = Modifier) {
                             .height(150.dp),
                         contentScale = ContentScale.Crop
                     )
-
                 }
+
+                // Page indicator
                 PageIndicator(
                     pageCount = images.size,
                     currentPage = pagerState.currentPage,
                     modifier = Modifier.padding(top = 60.dp)
-
-
                 )
             }
         }

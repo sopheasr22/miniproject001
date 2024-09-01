@@ -35,57 +35,7 @@ data class CardItems(
     val title: String,
     val description: String
 )
-// card of item
-@Composable
-fun Card(cardItems: CardItems) {
-    Card(
-        shape = RoundedCornerShape(24.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = Color(0xFFF0F4F8)
-        ),
-        elevation = CardDefaults.cardElevation(8.dp),
-        modifier = Modifier
-            .padding(6.dp)
-            .fillMaxWidth()
-            .height(110.dp)
-    ) {
-        Column(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
-            verticalArrangement = Arrangement.Center,
 
-            ) {
-            Image(
-                painter = painterResource(id = cardItems.imageResId),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(24.dp)
-                    .align(Alignment.End),
-                contentScale = ContentScale.Crop,
-
-                )
-
-            Text(
-                text = cardItems.title,
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    fontSize = 14.sp,
-                    color = Color(0xFF1B1F23)
-                ),
-                modifier = Modifier.padding(bottom = 8.dp, top = 4.dp)
-            )
-
-            Text(
-                text = cardItems.description,
-                style = MaterialTheme.typography.bodySmall.copy(
-                    fontSize = 10.sp,
-                    color = Color(0xFF606770)
-                ),
-                modifier = Modifier.padding(bottom = 4.dp)
-            )
-        }
-    }
-}
 
 @Composable
 fun BankingOptions() {
@@ -140,6 +90,60 @@ fun BankingOptions() {
 
     }
 }
+// card of item
+@Composable
+fun Card(cardItems: CardItems) {
+
+    Card(
+        shape = RoundedCornerShape(24.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xFFF0F4F8)
+        ),
+        elevation = CardDefaults.cardElevation(8.dp),
+        modifier = Modifier
+            .padding(6.dp)
+            .fillMaxWidth()
+            .height(110.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+            verticalArrangement = Arrangement.Center,
+
+            ) {
+            Image(
+                painter = painterResource(id = cardItems.imageResId),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(24.dp)
+                    .align(Alignment.End),
+                contentScale = ContentScale.Crop,
+
+                )
+
+            Text(
+                text = cardItems.title,
+                style = MaterialTheme.typography.bodyMedium.copy(
+                    fontSize = 14.sp,
+                    color = Color(0xFF1B1F23)
+                ),
+                modifier = Modifier.padding(bottom = 8.dp, top = 4.dp)
+            )
+
+            Text(
+                text = cardItems.description,
+                style = MaterialTheme.typography.bodySmall.copy(
+                    fontSize = 10.sp,
+                    color = Color(0xFF606770)
+                ),
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
+        }
+    }
+}
+
+
 
 @Preview
 @Composable

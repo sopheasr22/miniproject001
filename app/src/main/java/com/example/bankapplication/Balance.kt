@@ -37,8 +37,7 @@ import androidx.compose.ui.unit.dp
 
 
 @Composable
-fun HomeIndicator() {
-
+fun Balance() {
     var isVisible by remember { mutableStateOf(false) }
     val brush = Brush.horizontalGradient(listOf(Color(0xFFB0BEC5),Color(0xFF295F98)))
     Column(
@@ -70,7 +69,7 @@ fun HomeIndicator() {
         ) {
             if (isVisible){
                 Text(
-                    text = "$12345678910",
+                    text = "$12378910",
                     modifier = Modifier
                         .padding(5.dp)
                         .height(20.dp),
@@ -99,9 +98,10 @@ fun HomeIndicator() {
                     imageVector = if (isVisible)  Icons.Filled.Visibility else Icons.Filled.VisibilityOff  ,
                     contentDescription = "eyecheck",
                     tint = Color.Black,
-                    modifier = Modifier.size(14.dp)
+                    modifier = Modifier
+                        .size(14.dp)
                         .clickable() {
-                           isVisible=!isVisible
+                            isVisible = !isVisible
                         }
 
                 )
@@ -194,7 +194,7 @@ fun HomeIndicator() {
 @Preview
 @Composable
 fun HomePre() {
-    HomeIndicator()
+    Balance()
 }
 
 
