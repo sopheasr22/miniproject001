@@ -22,9 +22,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,6 +43,7 @@ data class CardItems(
 
 @Composable
 fun BankingOptions() {
+    val brush = Brush.horizontalGradient(listOf(Color.White.copy(0.25f),Color.White.copy(0.0f)))
     //data of card
     val cardItemsList = listOf(
         CardItems(
@@ -77,7 +82,7 @@ fun BankingOptions() {
         columns = GridCells.Fixed(3),
         modifier = Modifier
             .fillMaxWidth().padding(16.dp)
-            .background(color = Color(0xFF295F98), shape = RoundedCornerShape(16.dp))
+            .background(brush = brush, shape = RoundedCornerShape(16.dp))
             .border(2.dp, color = Color.Magenta, shape = RoundedCornerShape(16.dp)),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
@@ -125,16 +130,21 @@ fun Card(cardItems: CardItems) {
             Text(
                 text = cardItems.title,
                 style = MaterialTheme.typography.bodyMedium.copy(
-                    fontSize = 14.sp,
-                    color = Color(0xFF1B1F23)
+                    fontSize = 14.sp, fontWeight = FontWeight.Medium,
+                    color = Color(0xFF1B1F23),
+                    shadow = Shadow(
+                        color = Color(0xFF606770).copy(alpha = 0.2f),
+                        offset = Offset(2f, 2f),
+                        blurRadius = 4f
+                    )
                 ),
                 modifier = Modifier.padding(bottom = 8.dp, top = 4.dp)
             )
 
             Text(
                 text = cardItems.description,
-                style = MaterialTheme.typography.bodySmall.copy(
-                    fontSize = 10.sp,
+                style = MaterialTheme.typography.bodyMedium.copy(
+                    fontSize = 12.sp,
                     color = Color(0xFF606770)
                 ),
                 modifier = Modifier.padding(bottom = 4.dp)

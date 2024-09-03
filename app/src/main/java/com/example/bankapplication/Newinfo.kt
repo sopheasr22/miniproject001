@@ -29,10 +29,10 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 fun MyApp(modifier: Modifier = Modifier) {
     // List of images
     val images = listOf(
+        R.drawable.abasd,
         R.drawable.abacon,
         R.drawable.aba_chat_slider_en_v,
         R.drawable.aba_facepass_slider_en,
-        R.drawable.abasd,
         R.drawable.abasd
     )
 
@@ -67,7 +67,6 @@ fun MyApp(modifier: Modifier = Modifier) {
                 state = pagerState,
                 modifier = modifier.wrapContentSize()
             ) { currentPage ->
-                // Card for each page
                 Card(
                     modifier = modifier
                         .wrapContentSize()

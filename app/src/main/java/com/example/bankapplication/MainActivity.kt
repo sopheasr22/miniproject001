@@ -53,7 +53,7 @@ fun HomeScreen() {
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color(0xFF295F98)),
+            .background(color =Color(0xFF295F98)),
         topBar = {
             TopNavigationBar()
         }

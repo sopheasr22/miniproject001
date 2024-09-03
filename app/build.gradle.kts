@@ -69,10 +69,13 @@ dependencies {
     implementation(libs.accompanist.systemuicontroller)
     implementation(libs.androidx.material.icons.extended)
     // for scroll pager
-    implementation ("com.google.accompanist:accompanist-pager:0.12.0")
+    implementation (libs.accompanist.pager.v0120)
     // for generate qr code
-    implementation("com.google.zxing:core:3.3.0")
+    implementation(libs.core)
+    val nav_version = "2.7.7"
+    implementation("androidx.navigation:navigation-compose:$nav_version")
 }
+
 
 
 

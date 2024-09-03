@@ -34,12 +34,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 
 @Composable
 fun Balance() {
     var isVisible by remember { mutableStateOf(false) }
-    val brush = Brush.horizontalGradient(listOf(Color(0xFFB0BEC5),Color(0xFF295F98)))
+    val brush = Brush.horizontalGradient(listOf(Color.White.copy(0.25f),Color.White.copy(0.0f)))
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -69,7 +70,7 @@ fun Balance() {
         ) {
             if (isVisible){
                 Text(
-                    text = "$12378910",
+                    text = "$123789100",
                     modifier = Modifier
                         .padding(5.dp)
                         .height(20.dp),
@@ -78,9 +79,9 @@ fun Balance() {
             }
             else
                 Text(
-                    text = "                   ",
+                    text = "                     ",
                     modifier = Modifier
-                        .background(color = Color.LightGray, shape = RoundedCornerShape(4.dp))
+                        .background( color = Color.White.copy(alpha = 0.5f), shape = RoundedCornerShape(4.dp))
                         .padding(5.dp)
                         .height(20.dp),
                     color = Color.White
@@ -89,20 +90,21 @@ fun Balance() {
             Box(
                 modifier = Modifier
                     .padding(start = 10.dp)
-                    .background(color = Color.LightGray, shape = RoundedCornerShape(8.dp))
-                    .size(25.dp),
+                    .background( color = Color.White.copy(alpha = 0.2f), shape = RoundedCornerShape(6.dp))
+                    .size(28.dp),
                 contentAlignment = Alignment.Center
             ) {
 
                 Icon(
                     imageVector = if (isVisible)  Icons.Filled.Visibility else Icons.Filled.VisibilityOff  ,
                     contentDescription = "eyecheck",
-                    tint = Color.Black,
+                    tint = Color.White,
                     modifier = Modifier
-                        .size(14.dp)
+                        .size(16.dp)
                         .clickable() {
                             isVisible = !isVisible
-                        }
+                        },
+
 
                 )
             }
@@ -159,12 +161,13 @@ fun Balance() {
                 Image(
                     painter = painterResource(id = R.drawable.ic_receive),
                     contentDescription = "Receive money",
-                    modifier = Modifier.size(14.dp)
+                    modifier = Modifier.size(16.dp)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Receive money", color = Color.White,
-                    style = MaterialTheme.typography.bodySmall
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        fontSize = 14.sp),
                 )
             }
 
@@ -179,12 +182,13 @@ fun Balance() {
                 Image(
                     painter = painterResource(id = R.drawable.ic_pay),
                     contentDescription = "Send money",
-                    modifier = Modifier.size(14.dp)
+                    modifier = Modifier.size(16.dp)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Send money", color = Color.White,
-                    style = MaterialTheme.typography.bodySmall
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        fontSize = 14.sp),
                 )
             }
         }

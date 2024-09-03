@@ -1,4 +1,5 @@
 package com.example.bankapplication
+
 import android.graphics.Bitmap
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -88,14 +89,14 @@ fun TopNavigationBar() {
                 painter = painterResource(id = R.drawable.ic_notification),
                 contentDescription = "Notification",
                 modifier = Modifier
-                    .size(32.dp)
+                    .size(36.dp)
                     .padding(start = 16.dp)
             )
             Image(
                 painter = painterResource(id = R.drawable.ic_bk),
                 contentDescription = "QR",
                 modifier = Modifier
-                    .size(32.dp)
+                    .size(36.dp)
                     .padding(start = 16.dp)
                     .clickable(
                         indication = null,
@@ -139,10 +140,9 @@ fun FullWidthDialog(
                         contentDescription = "QR frame",
                         modifier = Modifier.fillMaxSize()
                     )
-                   Column(modifier = Modifier.padding(top = 100.dp)) {
-                       GenerateQrCode()
-                   }
-
+                    Column(modifier = Modifier.padding(top = 150.dp)) {
+                        GenerateQrCode()
+                    }
                 }
                 Box(
                     modifier = Modifier
@@ -150,7 +150,7 @@ fun FullWidthDialog(
                         .background(color = Color.LightGray, shape = RoundedCornerShape(16.dp))
                         .align(Alignment.TopEnd)
 
-                ){
+                ) {
                     Icon(
                         imageVector = Icons.Filled.Close,
                         contentDescription = "Close",
@@ -165,10 +165,20 @@ fun FullWidthDialog(
                             }
                     )
                 }
-
-
             }
+            Column (
+                modifier = Modifier.padding(top = 330.dp, start = 86.dp),
 
+            ){
+                Text(text = "SARUN SOPHEA",color = Color.Black,
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 20.sp
+                )
+                Text(text ="$0", color = Color.Black,
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 20.sp
+                )
+            }
         }
 
 
@@ -177,7 +187,7 @@ fun FullWidthDialog(
 
 // GenerateQrCode function
 @Composable
-fun GenerateQrCode(text: String = "0962450361"){
+fun GenerateQrCode(text: String = "https://pay.ababank.com/M8kyAW585YMVFR6L9") {
     val matrix = QRCodeWriter().encode(text, BarcodeFormat.QR_CODE, 512, 512)
     val width = matrix.width
     val height = matrix.height
@@ -195,7 +205,7 @@ fun GenerateQrCode(text: String = "0962450361"){
     Image(
         bitmap = bitmap.asImageBitmap(),
         contentDescription = "Generated QR Code",
-        modifier = Modifier.size(200.dp)
+        modifier = Modifier.size(250.dp)
     )
 
 
